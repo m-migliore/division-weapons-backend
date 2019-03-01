@@ -1,5 +1,5 @@
 class Api::V1::WeaponsController < ApplicationController
-  before_action :find_weapon, only: [:update, :destroy]
+  before_action :find_weapon, only: [:show, :update, :destroy]
 
   def index
     @weapons = Weapon.all
@@ -13,6 +13,10 @@ class Api::V1::WeaponsController < ApplicationController
     else
       render json: { errors: @weapon.errors }, status: :unprocessible_entity
     end
+  end
+
+  def show
+    render json: @weapon
   end
 
   def update
